@@ -113,7 +113,7 @@ with lib; let
     installJavascript   = true;
   };
 
-  commonBuildInputs = [ _nodejs makeWrapper git ];
+  commonBuildInputs = [ _nodejs makeWrapper ];
 
   # unpack the .tgz into output directory and add npm wrapper
   # TODO: "cd $out" vs NIX_NPM_BUILDPACKAGE_OUT=$out?
@@ -149,7 +149,7 @@ in rec {
     in stdenv.mkDerivation ({
       name = "${pname}-${version}-node-modules";
 
-      buildInputs = [ _nodejs jq ];
+      buildInputs = [ _nodejs jq git ];
 
       npmFlags = npmFlagsNpm;
       buildCommand = ''
