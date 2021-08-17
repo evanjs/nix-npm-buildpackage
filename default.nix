@@ -1,5 +1,5 @@
 { writeShellScriptBin, writeText, runCommand, writeScriptBin,
-  stdenv, lib, fetchurl, makeWrapper, nodejs, yarn, jq }:
+  stdenv, lib, fetchurl, makeWrapper, nodejs, yarn, jq, git }:
 with lib; let
   inherit (builtins) fromJSON toJSON split removeAttrs toFile;
 
@@ -113,7 +113,7 @@ with lib; let
     installJavascript   = true;
   };
 
-  commonBuildInputs = [ _nodejs makeWrapper ];  # TODO: git?
+  commonBuildInputs = [ _nodejs makeWrapper git ];  # TODO: git?
 
   # unpack the .tgz into output directory and add npm wrapper
   # TODO: "cd $out" vs NIX_NPM_BUILDPACKAGE_OUT=$out?
