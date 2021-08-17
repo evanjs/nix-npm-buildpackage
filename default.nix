@@ -113,7 +113,7 @@ with lib; let
     installJavascript   = true;
   };
 
-  commonBuildInputs = [ _nodejs makeWrapper git ];  # TODO: git?
+  commonBuildInputs = [ _nodejs makeWrapper git ];
 
   # unpack the .tgz into output directory and add npm wrapper
   # TODO: "cd $out" vs NIX_NPM_BUILDPACKAGE_OUT=$out?
