@@ -163,6 +163,7 @@ in rec {
         export HOME=$(mktemp -d)
         chmod a-w "$HOME"
 
+
         # do not run the toplevel lifecycle scripts, we only do dependencies
         cp ${toFile "package.json" (builtins.toJSON (info // { scripts = { }; }))} ./package.json
         cp ${toFile "package-lock.json" (builtins.toJSON lock)} ./package-lock.json
@@ -170,6 +171,9 @@ in rec {
         echo 'building npm cache'
         chmod u+w ./package-lock.json
         NODE_PATH=${npmModules} node ${./mknpmcache.js} ${cacheInput "npm-cache-input.json" lock packageOverrides}
+
+        echo 'adding git to path'
+        export PATH="$PATH:${git}/bin"
 
         echo 'building node_modules'
         npm $npmFlags ci
